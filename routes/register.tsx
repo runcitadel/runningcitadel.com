@@ -13,7 +13,7 @@ export default function Home() {
         <div class="min-h-screen flex items-center justify-center flex-col">
           <form
             method="POST"
-            target="/success"
+            action="/success"
             class="flex items-center justify-center flex-col"
           >
             <SubDomainInput />
