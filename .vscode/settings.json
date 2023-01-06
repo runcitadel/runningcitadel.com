@@ -4,5 +4,12 @@
   "editor.defaultFormatter": "denoland.vscode-deno",
   "[typescriptreact]": {
     "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+    "editor.suggest.showStatusBar": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
   }
 }
