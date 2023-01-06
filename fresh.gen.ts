@@ -3,21 +3,23 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import config from "./deno.json" assert { type: "json" };
-import * as $0 from "./routes/api/dns/check/[subdomain].ts";
-import * as $1 from "./routes/api/dns/register.ts";
-import * as $2 from "./routes/index.tsx";
-import * as $3 from "./routes/register.tsx";
-import * as $4 from "./routes/success.tsx";
+import * as $0 from "./routes/_middleware.ts";
+import * as $1 from "./routes/api/dns/check/[subdomain].ts";
+import * as $2 from "./routes/api/dns/getInfo.ts";
+import * as $3 from "./routes/index.tsx";
+import * as $4 from "./routes/register.tsx";
+import * as $5 from "./routes/success.tsx";
 import * as $$0 from "./islands/CountUp.tsx";
 import * as $$1 from "./islands/SubDomainInput.tsx";
 
 const manifest = {
   routes: {
-    "./routes/api/dns/check/[subdomain].ts": $0,
-    "./routes/api/dns/register.ts": $1,
-    "./routes/index.tsx": $2,
-    "./routes/register.tsx": $3,
-    "./routes/success.tsx": $4,
+    "./routes/_middleware.ts": $0,
+    "./routes/api/dns/check/[subdomain].ts": $1,
+    "./routes/api/dns/getInfo.ts": $2,
+    "./routes/index.tsx": $3,
+    "./routes/register.tsx": $4,
+    "./routes/success.tsx": $5,
   },
   islands: {
     "./islands/CountUp.tsx": $$0,

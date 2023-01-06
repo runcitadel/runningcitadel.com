@@ -26,3 +26,26 @@ export async function validateAuth(username: string, password: string) {
   }
   return bcrypt.compareSync(password, data.hashed_secret) ? data : false;
 }
+
+export async function validateAuthFromRequest(req: Request): Promise<Response | Exclude<Awaited<ReturnType<typeof validateAuth>>, false>> {
+  // Get the Authorization header
+  const auth = req.headers.get("Authorization");
+  if (!auth) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  // Check if the Authorization header is valid
+  const authParts = auth.split(" ");
+  if (authParts[0] !== "Basic") {
+    return new Response("Unauthorized", { status: 401 });
+  }
+  // Decode the base64 encoded username:password
+  const decoded = atob(authParts[1]);
+  const [username, password] = decoded.split(":");
+  // Check if the username and password are valid
+  const authResult = await validateAuth(username, password);
+  if (!authResult) {
+    return new Response("Unauthorized", { status: 401 });
+  } else {
+    return authResult;
+  }
+}
