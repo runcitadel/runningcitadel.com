@@ -7,7 +7,6 @@ export default function SubDomainInput() {
 
   // @ts-expect-error useEffect normally shouldn't be async
   useEffect(async () => {
-    console.log(subdomain);
     if (subdomain !== null && subdomain.length < 5) {
       setError("Your subdomain should be at least 5 letters long.");
       return;

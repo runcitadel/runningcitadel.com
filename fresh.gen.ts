@@ -5,10 +5,13 @@
 import config from "./deno.json" assert { type: "json" };
 import * as $0 from "./routes/_middleware.ts";
 import * as $1 from "./routes/api/dns/check/[subdomain].ts";
-import * as $2 from "./routes/api/dns/getInfo.ts";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/register.tsx";
-import * as $5 from "./routes/success.tsx";
+import * as $2 from "./routes/api/dns/create.ts";
+import * as $3 from "./routes/api/dns/find.ts";
+import * as $4 from "./routes/api/dns/getInfo.ts";
+import * as $5 from "./routes/api/dns/records/[id].ts";
+import * as $6 from "./routes/index.tsx";
+import * as $7 from "./routes/register.tsx";
+import * as $8 from "./routes/success.tsx";
 import * as $$0 from "./islands/CountUp.tsx";
 import * as $$1 from "./islands/SubDomainInput.tsx";
 
@@ -16,10 +19,13 @@ const manifest = {
   routes: {
     "./routes/_middleware.ts": $0,
     "./routes/api/dns/check/[subdomain].ts": $1,
-    "./routes/api/dns/getInfo.ts": $2,
-    "./routes/index.tsx": $3,
-    "./routes/register.tsx": $4,
-    "./routes/success.tsx": $5,
+    "./routes/api/dns/create.ts": $2,
+    "./routes/api/dns/find.ts": $3,
+    "./routes/api/dns/getInfo.ts": $4,
+    "./routes/api/dns/records/[id].ts": $5,
+    "./routes/index.tsx": $6,
+    "./routes/register.tsx": $7,
+    "./routes/success.tsx": $8,
   },
   islands: {
     "./islands/CountUp.tsx": $$0,
