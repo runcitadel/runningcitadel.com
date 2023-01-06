@@ -14,6 +14,7 @@ import * as $7 from "./routes/register.tsx";
 import * as $8 from "./routes/success.tsx";
 import * as $$0 from "./islands/CountUp.tsx";
 import * as $$1 from "./islands/SubDomainInput.tsx";
+import * as $$2 from "./islands/ValidatedInput.tsx";
 
 const manifest = {
   routes: {
@@ -30,6 +31,7 @@ const manifest = {
   islands: {
     "./islands/CountUp.tsx": $$0,
     "./islands/SubDomainInput.tsx": $$1,
+    "./islands/ValidatedInput.tsx": $$2,
   },
   baseUrl: import.meta.url,
   config,

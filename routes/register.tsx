@@ -2,6 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 
 import CfTurnstile from "$turnstile/components/CfTurnstile.tsx";
 import SubDomainInput from "../islands/SubDomainInput.tsx";
+import ValidatedInput from "../islands/ValidatedInput.tsx";
 
 export default function Home() {
   return (
@@ -18,20 +19,16 @@ export default function Home() {
           >
             <SubDomainInput />
             <div class="text-xl mt-2 mb-1">
-              Your login ID:<input
+              Your login ID:<ValidatedInput
                 name="username"
-                type="text"
                 placeholder="e5deb41a18ea693afce842fb855465b1c4612e504b0440ac031af2df68f29045"
-                class="border-0 bg-transparent border-b-2 p-2 border-black dark:border-white text-lg text-center lg:w-[45rem]"
               />
             </div>
             <div class="text-xl my-1">
               Your login secret:{" "}
-              <input
+              <ValidatedInput
                 name="password"
-                type="text"
                 placeholder="b4056df6691f8dc72e56302ddad345d65fead3ead9299609a826e2344eb63aa4"
-                class="border-0 bg-transparent border-b-2 p-2 border-black dark:border-white text-lg text-center lg:w-[45rem]"
               />
             </div>
             <CfTurnstile sitekey={Deno.env.get("TURNSTILE_SITE_KEY")!} />
