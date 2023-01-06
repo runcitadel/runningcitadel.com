@@ -24,5 +24,5 @@ export async function validateAuth(username: string, password: string) {
   if (!data) {
     return false;
   }
-  return (await bcrypt.compare(password, data.hashed_secret)) ? data : false;
+  return bcrypt.compareSync(password, data.hashed_secret) ? data : false;
 }

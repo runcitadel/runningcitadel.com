@@ -52,7 +52,7 @@ export const handler: Handlers = {
         }
         await supabase.from("subdomains").insert({
             username,
-            hashed_secret: await bcrypt.hash(password),
+            hashed_secret: bcrypt.hashSync(password),
             domain: subdomain,
         });
     } else {
