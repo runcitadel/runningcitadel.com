@@ -1,16 +1,32 @@
 import { useEffect, useState } from "preact/hooks";
+import { reservedNames } from "/utils/domain.ts";
 
 export default function SubDomainInput() {
   const [subdomain, setSubdomain] = useState<string | null>(null);
   const [error, setError] = useState("");
 
-  useEffect(() => {
+  // @ts-expect-error useEffect normally shouldn't be async
+  useEffect(async () => {
     console.log(subdomain);
     if (subdomain !== null && subdomain.length < 5) {
       setError("Your subdomain should be at least 5 letters long.");
       return;
     }
-    setError("");
+    if (reservedNames.includes(subdomain!)) {
+      setError("This subdomain is reserved by the Citadel team - contact us if you think this is a mistake.");
+      return;
+    }
+    const res = await fetch(`/api/dns/check/${subdomain}`);
+    if (res.status === 200) {
+      const { available } = await res.json();
+      if (available) {
+        setError("");
+      } else {
+        setError("This subdomain is already taken.");
+      }
+    } else {
+      setError("Failed to check subdomain availability.");
+    }
   }, [subdomain]);
 
   return (
