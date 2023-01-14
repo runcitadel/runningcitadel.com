@@ -58,7 +58,7 @@ export const handler: Handlers = {
     }
     // Ensure user has access to body.name
     if (authData.domain !== body.name && !body.name.endsWith(`.${authData.domain}`)) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response(`Your domain needs to be a subdomain of ${authData.domain}.runningcitadel.com. ${body.name}.runningcitadel.com is not a subdomain of ${authData.domain}.runningcitadel.com.`, { status: 401 });
     }
     const res = await cf.create(body);
     return new Response(JSON.stringify(res), { status: 200, headers: { "Content-Type": "application/json" } });
