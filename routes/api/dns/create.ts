@@ -52,7 +52,7 @@ export const handler: Handlers = {
         "content",
         "ttl",
         "priority",
-    ], ["type", "name", "content", "ttl"]);
+    ], ["type", "name", "content"]);
     if (body instanceof Response) {
       return body;
     }
@@ -60,7 +60,7 @@ export const handler: Handlers = {
     if (authData.domain !== body.name && !body.name.endsWith(`.${authData.domain}`)) {
       return new Response(`Your domain needs to be a subdomain of ${authData.domain}.runningcitadel.com. ${body.name}.runningcitadel.com is not a subdomain of ${authData.domain}.runningcitadel.com.`, { status: 401 });
     }
-    const res = await cf.create(body);
+    const res = await cf.create({ttl: 1, ...body});
     return new Response(JSON.stringify(res), { status: 200, headers: { "Content-Type": "application/json" } });
   },
 };
