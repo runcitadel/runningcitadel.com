@@ -43,6 +43,7 @@ export const handler: Handlers = {
   async POST(req, _ctx) {
     const authData = await validateAuthFromRequest(req);
     if (authData instanceof Response) {
+      console.error(`[401] /api/dns/create: Missing auth data.`);
       return authData;
     }
     const rawBody = await req.json();
@@ -54,13 +55,16 @@ export const handler: Handlers = {
         "priority",
     ], ["type", "name", "content"]);
     if (body instanceof Response) {
+      console.error(`[401] /api/dns/create: Invalid properties set.`);
       return body;
     }
     // Ensure user has access to body.name
     if (authData.domain !== body.name && !body.name.endsWith(`.${authData.domain}`)) {
+      console.error(`[401] /api/dns/create: Your domain needs to be a subdomain of ${authData.domain}.runningcitadel.com. ${body.name}.runningcitadel.com is not a subdomain of ${authData.domain}.runningcitadel.com.`);
       return new Response(`Your domain needs to be a subdomain of ${authData.domain}.runningcitadel.com. ${body.name}.runningcitadel.com is not a subdomain of ${authData.domain}.runningcitadel.com.`, { status: 401 });
     }
     const res = await cf.create({ttl: 1, ...body});
+    console.log(JSON.stringify(res));
     return new Response(JSON.stringify(res), { status: 200, headers: { "Content-Type": "application/json" } });
   },
 };
