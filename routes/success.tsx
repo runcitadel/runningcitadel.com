@@ -35,7 +35,7 @@ export const handler: Handlers = {
     if (outcome.success) {
       const username = body.get("username");
       const password = body.get("password");
-      const subdomain = body.get("subdomain");
+      let subdomain = body.get("subdomain");
       if (
         typeof username !== "string" || typeof password !== "string" ||
         typeof subdomain !== "string"
@@ -44,6 +44,7 @@ export const handler: Handlers = {
           status: 400,
         });
       }
+      subdomain = subdomain.toLowerCase();
       if (
         subdomain.length < 5 || reservedNames.includes(subdomain) ||
         !subdomain.match(/^[a-z0-9]+$/) || subdomain.length > 20
@@ -57,7 +58,7 @@ export const handler: Handlers = {
         !password.match(/^([a-f0-9]){64}$/)
       ) {
         return new Response(
-          "Please make sure you copy your login data exactly from Citadel",
+          "Please make sure you copy your login data exactly from Citadel.",
           {
             status: 400,
           },

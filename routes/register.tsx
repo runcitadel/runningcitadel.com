@@ -19,7 +19,7 @@ export default function Home() {
           >
             <SubDomainInput />
             <div class="text-xl mt-2 mb-1">
-              Your login ID:<ValidatedInput
+              Your login ID:{" "}<ValidatedInput
                 name="username"
                 placeholder="e5deb41a18ea693afce842fb855465b1c4612e504b0440ac031af2df68f29045"
               />

@@ -64,7 +64,6 @@ export const handler: Handlers = {
       return new Response(`Your domain needs to be a subdomain of ${authData.domain}.runningcitadel.com. ${body.name}.runningcitadel.com is not a subdomain of ${authData.domain}.runningcitadel.com.`, { status: 401 });
     }
     const res = await cf.create({ttl: 1, ...body});
-    console.log(JSON.stringify(res));
     return new Response(JSON.stringify(res), { status: 200, headers: { "Content-Type": "application/json" } });
   },
 };

@@ -11,6 +11,10 @@ export default function SubDomainInput() {
       setError("Your subdomain should be at least 5 letters long.");
       return;
     }
+    if (!subdomain.toLowerCase().match(/^[a-z0-9]+$/)) {
+      setError("Your subdomain should only include letters from a-z and digits from 0-9.");
+      return;
+    }
     if (reservedNames.includes(subdomain!)) {
       setError("This subdomain is reserved by the Citadel team - contact us if you think this is a mistake.");
       return;
